@@ -9,7 +9,29 @@
     <title>Weather Dashboard</title>
 </head>
 <body>
-    
+    <header>
+        <h1>Weather Dashboard</h1>
+    </header>
+    <aside>
+        <h2>Search for a City:</h2>
+        <textarea></textarea>
+        <button id="searchBtn">Search</button>
+        <ul>
+            <li><button id="suggestedSearch">Austin</button></li>
+            <li><button id="suggestedSearch">Chicago</button></li>
+            <li><button id="suggestedSearch">New York</button></li>
+            <li><button id="suggestedSearch">Orlando</button></li>
+            <li><button id="suggestedSearch">San Francisco</button></li>
+            <li><button id="suggestedSearch">Seattle</button></li>
+            <li><button id="suggestedSearch">Denver</button></li>
+            <li><button id="suggestedSearch">Atlanta</button></li>
+        </ul>
+    </aside>
+    <main>
+        <div id="dashboard"></div>
+        <h2>5-Day Forecast:</h2>
+        <div id="forecast"></div>
+    </main>
 </body>
     <script src="./Assets/script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
