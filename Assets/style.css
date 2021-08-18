@@ -1,0 +1,101 @@
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    margin:0px;
+  }
+
+#asideColumn {
+    display: flex;
+    flex-direction: column;
+    width:25%;
+    margin:1rem;
+}
+  
+.column {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    flex: 1;
+  }
+
+header {
+    display:flex;
+    background-color: rgb(0, 0, 194);
+    justify-content: space-around;
+}
+
+h1 {
+    color:white;
+
+}
+
+textarea {
+    width:100%;
+    background: transparent;
+    border-radius:7px;
+    resize: none;
+    color: #000000;
+    border-left: 1px solid black;
+    padding: 10px;
+    height: 3em;
+}
+
+ul {
+    margin:1rem 0rem;
+    padding-inline-start:0px;
+}
+
+li {
+    list-style-type: none;
+    width:100%;
+}
+
+button {
+    font-size:20px;
+    border-radius:7px;
+    width:100%;
+    border:transparent;
+    padding:5px;
+    margin-bottom:1rem;
+}
+
+#searchBtn {
+    color: white;
+    background:rgb(48, 175, 218);
+    margin:1rem 0rem;
+}
+
+main {
+    display:flex;
+    width:70%;
+}
+
+#dashboard {
+    border:solid;
+    margin:1rem;
+}
+
+#forecastHeader {
+    margin:1rem;
+}
+
+.uvi {
+    font-size: 17px;
+    font-weight: bold;
+    color: white;
+    padding: 1px 15px;
+    border-radius: 3px;
+}
+
+.green {
+    background-color: green;
+}
+
+.yellow {
+    background-color: yellow;
+}
+
+.red {
+    background-color: red;
+}

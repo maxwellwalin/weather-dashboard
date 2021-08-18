@@ -12,27 +12,31 @@
     <header>
         <h1>Weather Dashboard</h1>
     </header>
-    <aside>
-        <h2>Search for a City:</h2>
-        <textarea></textarea>
-        <button id="searchBtn">Search</button>
-        <ul>
-            <li><button id="suggestedSearch">Austin</button></li>
-            <li><button id="suggestedSearch">Chicago</button></li>
-            <li><button id="suggestedSearch">New York</button></li>
-            <li><button id="suggestedSearch">Orlando</button></li>
-            <li><button id="suggestedSearch">San Francisco</button></li>
-            <li><button id="suggestedSearch">Seattle</button></li>
-            <li><button id="suggestedSearch">Denver</button></li>
-            <li><button id="suggestedSearch">Atlanta</button></li>
-        </ul>
-    </aside>
-    <main>
-        <div id="dashboard"></div>
-        <h2>5-Day Forecast:</h2>
-        <div id="forecast"></div>
-    </main>
+    <div class="row">
+        <aside id="asideColumn">
+            <h2>Search for a City:</h2>
+            <textarea type="text" placeholder="Costa Mesa"></textarea>
+            <button id="searchBtn">Search</button>
+            <ul id="searchHistoryList">
+
+            </ul>
+        </aside>
+        <main class="column">
+            <div id="dashboard">
+                <h2 id="city">Costa Mesa (8/17/2021)</h2>
+                <p id="temp">Temp: 71.2°F</p>
+                <p id="wind">Wind: 1.01 MPH</p>
+                <p id="humidity">Humidity: 83%</p>
+                <p><p>UV Index: <span class="uvi green">0</span></p></p>
+            </div>
+            <h2 id="forecastHeader">5-Day Forecast:</h2>
+            <div id="forecast">
+
+            </div>
+        </main>
+    </div>
 </body>
-    <script src="./Assets/script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="./Assets/script.js"></script>
 </html>
