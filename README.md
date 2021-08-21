@@ -1,5 +1,7 @@
 # Weather Dashboard
 
+Click [here](https://maxwellwalin.github.io/weather-dashboard/) to open the deployed app on Github pages.
+
 # Tech Used
 
 Use of [OpenWeather One Call API](https://openweathermap.org/api/one-call-api) to retrieve weather data for cities. 
