@@ -1,6 +1,6 @@
 # Weather Dashboard
 
-Click [here](!https://maxwellwalin.github.io/weather-dashboard/) to open the deployed app on Github pages.
+Click [here](https://maxwellwalin.github.io/weather-dashboard/) to open the deployed app on Github pages.
 
 # Tech Used
 
