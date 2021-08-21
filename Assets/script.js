@@ -1,3 +1,4 @@
+const currentMoment = moment();
 const currentDate = moment().format("(M/DD/YYYY)");
 
 let searchHistory = JSON.parse(localStorage.getItem("searchHistory"));
@@ -9,7 +10,7 @@ document.querySelector("#searchBtn").addEventListener("click", function() {
     localStorage.removeItem("lat");
     localStorage.removeItem("lng");
 
-    const cityInput = $("textarea").val();
+    let cityInput = $("textarea").val();
     localStorage.setItem("cityInput", cityInput);
     console.log(cityInput);
 
@@ -18,8 +19,11 @@ document.querySelector("#searchBtn").addEventListener("click", function() {
     }
     console.log(searchHistory);
 
+    searchAndSet(cityInput);
+      });
 
-    const geocodeApiUrl = "https://maps.googleapis.com/maps/api/geocode/json?address=" + cityInput + "&key=AIzaSyDvL3NSHoK97XAjeaDmISONa46hOyECb5U";
+function searchAndSet(input) {
+    const geocodeApiUrl = "https://maps.googleapis.com/maps/api/geocode/json?address=" + input + "&key=AIzaSyDvL3NSHoK97XAjeaDmISONa46hOyECb5U";
     fetch(geocodeApiUrl).then(function (response) {
         response.json().then(function (data) {
             console.log(data);
@@ -27,20 +31,20 @@ document.querySelector("#searchBtn").addEventListener("click", function() {
             localStorage.setItem("lng", data.results[0].geometry.location.lng);
 
             searchHistory.unshift(data.results[0].address_components[0].long_name);
-            console.log(searchHistory.length)
+            console.log(searchHistory.length);
             if (searchHistory.length >= 11) {
                 searchHistory = searchHistory.slice(0, 10);
             }
 
-            console.log(searchHistory)
+            console.log(searchHistory);
             localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
             
-            geocodeToLocation()
+            geocodeToLocation();
             fillSearchHistory(searchHistory);
-        });
-      });
-})
-
+        }
+        )}
+    )}
+    
 function geocodeToLocation() {
     let lat = "?lat=" + localStorage.getItem("lat");
     let lng = "&lon=" + localStorage.getItem("lng");
@@ -53,6 +57,7 @@ function geocodeToLocation() {
             console.log(data);
 
             fillDashboard(data, localStorage.getItem("cityInput"), currentDate.toString());
+            fillForecast(data);
         });
         } else {
         console.log('Error: ' + response.statusText);
@@ -84,8 +89,34 @@ function fillDashboard(weather, city, date) {
      document.getElementById("dashboard").appendChild(uviP);
 };
 
-function fillForecast() {
+function fillForecast(weather) {
+    document.getElementById("forecast").remove();
 
+    const forecastContainer = document.createElement("div");
+    forecastContainer.setAttribute("id", "forecast");
+
+    let dayAhead = 0;
+
+    for (let i = 0; i < 5; i++) {
+        dayAhead++;
+        let date = currentMoment.add(dayAhead, 'days').format("(M/DD/YYYY)");
+        console.log(date);
+
+        const forecastCard = document.createElement("div");
+        forecastCard.setAttribute("id", "forecastCard");
+
+        forecastCard.innerHTML = 
+            '<h2 id="fcDate">' + date + '</h2>\n' +
+            '<h2 id="fcIcon">' + "Icon" + '</h2>\n' +
+            '<p id="fcTemp">Temp: '+weather.daily[i].temp.day +'°F</p>\n' +
+            '<p id="fcWind">Wind: ' + weather.daily[i].wind_speed +' MPH</p>\n' +
+            '<p id="fcHumidity">Humidity: ' + weather.daily[i].humidity + '%</p>\n';
+        
+        forecastContainer.appendChild(forecastCard);
+        date = currentMoment.subtract(dayAhead, 'days');
+    }
+
+    $(".column").append(forecastContainer);
 };
 
 function fillSearchHistory(array) {
@@ -101,9 +132,46 @@ function fillSearchHistory(array) {
         searchHistoryList.appendChild(searchHistoryLi);
     }
     document.getElementById("asideColumn").appendChild(searchHistoryList);
-}
 
-// function searchHistoryBtnEvent() {
+    const searchUL = $("#searchHistoryList");
+
+    for (let li = 0; li < searchUL.children().length; li++) {
+        const element = searchUL.children()[li];
+        
+        element.addEventListener("click", function(event) {
+            event.preventDefault();
+            localStorage.removeItem("lat");
+            localStorage.removeItem("lng");
+    
+            let cityInput = $(event.target).text();
+            localStorage.setItem("cityInput", cityInput);
+            console.log(cityInput);
+    
+            if (typeof searchHistory !== 'object' || searchHistory == null) {
+                searchHistory = [];
+            }
+            console.log(searchHistory);
+    
+            searchAndSet(cityInput);
+        })
+    }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //     let searchHistoryButtonList = document.querySelectorAll("#suggestedSearch");
 //     for (let i = 0; i < searchHistoryButtonList.length; i++) {
 //         searchHistoryButtonList[i].addEventListener("click", function() {

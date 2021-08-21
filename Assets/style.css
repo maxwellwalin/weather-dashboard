@@ -99,3 +99,14 @@ main {
 .red {
     background-color: red;
 }
+
+#forecastCard {
+    color: white;
+    background-color: #0000c2ab;
+    padding: 2rem;
+}
+
+#forecast {
+    display:flex;
+    justify-content: space-around;
+}
